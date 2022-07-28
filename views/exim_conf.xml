@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<odoo> 
+    
+    <record id='ports_conf_action' model='ir.actions.act_window'>
+        <field name="name">Port</field>
+        <field name="res_model">configuration.port.parent</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id='product_conf_action' model='ir.actions.act_window'>
+        <field name="name">Product</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+
+    <record id='uom_conf_action' model='ir.actions.act_window'>
+        <field name="name">UoM</field>
+        <field name="res_model">uom.uom</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id='uom_cat_conf_action' model='ir.actions.act_window'>
+        <field name="name">UoM Categories</field>
+        <field name="res_model">uom.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="EXIM" id="exim_base_menu" />
+    <menuitem name="Configuration" id="exim_conf_menu" parent="exim_base_menu" sequence="2"/>
+    <menuitem name="Ports" id="exim_conf_port_menu"  parent="exim_conf_menu" action="ports_conf_action" sequence="1" />
+    <menuitem name="Products" id="exim_conf_product_menu"  parent="exim_conf_menu" action="product_conf_action" sequence="2" />
+    <menuitem name="UoM" id="exim_conf_uom_men"  parent="exim_conf_menu" action="uom_conf_action" sequence="3" />
+    <menuitem name="UoM Categories" id="exim_conf_uom_cat_men"  parent="exim_conf_menu" action="uom_cat_conf_action" sequence="4" />
+
+
+
+
+    
+
+
+    <record id="ports_view_form" model="ir.ui.view">
+        <field name="name">Ports</field>
+        <field name="model">configuration.port.parent</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="country"/>
+                        <field name="ports" widget="one2many_list">
+                                <tree>
+                                    <field name="port" />
+                                </tree>
+                        </field>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="ports_view_child_form" model="ir.ui.view">
+        <field name="name">Ports</field>
+        <field name="model">configuration.port.child</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="port"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="ports_view_tree" model="ir.ui.view"> 
+        <field name="name">Ports</field> 
+            <field name="model">configuration.port.parent</field> 
+            <field name="arch" type="xml"> 
+            <tree> 
+                <field name="country"/> 
+            </tree> 
+        </field> 
+    </record>
+</odoo>
